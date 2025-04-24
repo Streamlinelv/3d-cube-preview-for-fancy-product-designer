@@ -1,0 +1,60 @@
+# Copyright (C) 2020 Streamline.lv
+# This file is distributed under the same license as the CartBounty - Save and recover abandoned carts for WooCommerce plugin.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 3D Cube Preview for Fancy Product Designer\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-save-abandoned-carts\n"
+"POT-Creation-Date: 2025-04-24 12:25+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: www.streamline.lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Domain: woo-save-abandoned-carts\n"
+"X-Poedit-KeywordsList: __;_n:1,2;_nx:1,2;_e;_x;_ex;_nx;esc_attr__;esc_attr_e;esc_attr_x;esc_html__;esc_html_e;esc_html_x;_n_noop;_nx_noop;translate_nooped_plural\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-fpd-3dcp-admin.php:119 admin/class-fpd-3dcp-admin.php:300
+msgid "3D Preview"
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:122
+msgid "<strong>Please Note</strong>: This 3D preview is meant to visualize how the design wraps around the cube. The quality may appear lower here — your final product will be printed in high resolution."
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:176
+msgid "Scene width"
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:177
+msgid "Scene height"
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:178
+msgid "Cube height"
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:179
+msgid "Plane order"
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:180
+msgid "Preview button name"
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:181
+msgid "Preview button class"
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:182
+msgid "Product IDs"
+msgstr ""
+
+#: admin/class-fpd-3dcp-admin.php:183
+msgid "Preview quality notice"
+msgstr ""

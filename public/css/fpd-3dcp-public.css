@@ -1,0 +1,111 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.fpd-icon-3d-preview:before{
+	background: url('../assets/3d-preview.svg') no-repeat center;
+	content: '';
+	height: 21px;
+	width: 28px;
+	display: block;
+}
+
+.fpd-3dcp-preview-overlay{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.85);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+}
+
+#fpd-3dcp-cube-canvas{
+	width: 100vw;
+	height: 100vh;
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.fpd-3dcp-close-preview{
+	position: absolute;
+	top: 20px;
+	right: 40px;
+	font-size: 50px;
+	font-weight: 600;
+	color: #000;
+	cursor: pointer;
+	z-index: 10000;
+}
+
+.fpd-3dcp-info-message{
+	padding: 20px 30px;
+	background: #000;
+	color: #fff;
+	margin-bottom: 10px;
+	font-size: 16px;
+	line-height: 22px;
+	border-radius: 4px;
+	position: absolute;
+	bottom: 30px;
+	right: 40px;
+	max-width: 390px;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateX(0) translateY(50%);
+}
+
+.fpd-3dcp-info-message.show.fadeout{
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0) translateY(0);
+}
+
+.fpd-3dcp-info-message.show {
+	animation: fadeInBottom 0.6s ease-out 3s forwards;
+}
+
+.fpd-3dcp-info-message.fadeout {
+	animation: fadeOutBottom 0.6s ease-out 0s forwards;
+}
+
+@keyframes fadeInBottom{
+	to{
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(0) translateY(0);
+	}
+}
+
+@keyframes fadeOutBottom{
+	to{
+		opacity: 0;
+		transform: translateX(0) translateY(50%);
+	}
+}
+
+.fpd-3dcp-close-message{
+	position: absolute;
+	top: 8px;
+	right: 14px;
+	font-size: 25px;
+	color: #fff;
+	opacity: .5;
+	cursor: pointer;
+}
+
+.fpd-3dcp-close-message:hover{
+	opacity: .8
+}
+
+@media screen and (max-width: 460px) {
+	.fpd-3dcp-info-message{
+		left: 5%;
+		right: 5%;
+	}
+}
