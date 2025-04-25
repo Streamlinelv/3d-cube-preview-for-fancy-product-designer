@@ -104,6 +104,10 @@ class fpd_3dcp_Public {
 		$admin = new fpd_3dcp_Admin( FPD_3DCP_PLUGIN_NAME, FPD_3DCP_VERSION );
 		$settings = $admin->get_settings();
 
+		if( $this->is_this_5_side_cube_product() ){
+			$settings['cube_sides'] = 5;
+		}
+
 		wp_enqueue_script( 'three-js', 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', array(), null, true );
 		wp_enqueue_script( 'three-orbitcontrols', 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js', array( 'three-js' ), null, true );
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/fpd-3dcp-public.js', array( 'jquery', 'three-js', 'three-orbitcontrols' ), $this->version, false );
@@ -144,10 +148,41 @@ class fpd_3dcp_Public {
 		$result = false;
 		
 		if( is_product() ){
-	   		$product_id = get_queried_object_id();
+			$product_id = get_queried_object_id();
 
-	   		$admin = new fpd_3dcp_Admin( FPD_3DCP_PLUGIN_NAME, FPD_3DCP_VERSION );
+			$admin = new fpd_3dcp_Admin( FPD_3DCP_PLUGIN_NAME, FPD_3DCP_VERSION );
 			$product_ids_string = $admin->get_settings( 'product_ids' );
+			$product_ids_5_sides_string = $admin->get_settings( 'product_ids_5_sides' );
+
+			// Convert both strings to arrays
+			$product_ids_array = array_map( 'trim', explode( ',', $product_ids_string ) );
+			$product_ids_5_sides_array = array_map( 'trim', explode( ',', $product_ids_5_sides_string ) );
+
+			// Merge and remove duplicates
+			$merged_ids_array = array_unique( array_merge( $product_ids_array, $product_ids_5_sides_array ) );
+
+			if( in_array( $product_id, $merged_ids_array ) ){
+				$result = true;
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Check if looking at product with 5 sides
+	 *
+	 * @since    1.0.1
+	 * @return   boolean
+	 */
+	function is_this_5_side_cube_product(){
+		$result = false;
+		
+		if( is_product() ){
+			$product_id = get_queried_object_id();
+
+			$admin = new fpd_3dcp_Admin( FPD_3DCP_PLUGIN_NAME, FPD_3DCP_VERSION );
+			$product_ids_string = $admin->get_settings( 'product_ids_5_sides' );
 			$product_ids_array = array_map( 'trim', explode( ',', $product_ids_string ) );
 
 			if( in_array( $product_id, $product_ids_array ) ){

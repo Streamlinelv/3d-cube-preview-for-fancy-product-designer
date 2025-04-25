@@ -7,7 +7,7 @@
 		const cube_height = fpd_3dcp.cube_height;
 		const plane_order_array = fpd_3dcp.plane_order;
 		const plane_order = plane_order_array.split(',').map(str => parseInt(str.trim()));
-		const cubeSides = 6;
+		let cubeSides = 6;
 		const button_name = fpd_3dcp.button_name;
 		const button_class = fpd_3dcp.button_class;
 		const previewBtn = document.querySelector('.' + button_class);
@@ -18,6 +18,10 @@
 		const closeMessageBtn = document.getElementById('fpd-3dcp-close-message');
 		const storageKey = 'fpd_3dcp_quality_notice_closed';
 		let renderer, scene, camera, cube, controls, animationId;  // Declare globals
+
+		if( fpd_3dcp.cube_sides == 5 ){
+			cubeSides = fpd_3dcp.cube_sides;
+		}
 
 		if ( !canvas || !overlay || !closeBtn ) return;
 
@@ -162,17 +166,29 @@
 				isUserInteracting = false;
 			});
 
-			// Pad the imageUrls array to ensure it has 6 items
-			while (imageUrls.length < 6) {
-				imageUrls.push(null);
+			// If only 5 images provided, we replace the back side and replace it with null
+			if (cubeSides == 5){
+				imageUrls.splice(2, 0, null);
 			}
 
-			const [right, left, top, bottom, front, back] = imageUrls;
+			const [back, right, front, left, top, bottom] = imageUrls;
 
-			const loadTextureOrColor = (url) => {
-				if (url) {
+			const textureLoader = new THREE.TextureLoader();
+			
+			const loadTextureOrColor = (url, rotate = false) => {
+				if (url){
+
+					//Rotate bottom side 180 degrees
+					const texture = textureLoader.load(url, (tex) => {
+						if (rotate) {
+							// Rotate the texture by 180°
+							tex.center.set(0.5, 0.5); // Rotate around center
+							tex.rotation = Math.PI;  // 180 degrees
+						}
+					});
+
 					return new THREE.MeshStandardMaterial({
-						map: new THREE.TextureLoader().load(url),
+						map: texture,
 						roughness: 0.9,          // High roughness = matte
 						metalness: 0.0,          // Plastic is non-metal
 						side: THREE.DoubleSide
@@ -188,12 +204,12 @@
 			};
 
 			const materials = [
-				loadTextureOrColor(right),   // +X (Right)
-				loadTextureOrColor(left),    // -X (Left)
-				loadTextureOrColor(top),     // +Y (Top)
-				loadTextureOrColor(bottom),  // -Y (Bottom)
-				loadTextureOrColor(front),   // +Z (Front)
-				loadTextureOrColor(back)     // -Z (Back)
+				loadTextureOrColor(left),
+				loadTextureOrColor(right),
+				loadTextureOrColor(top),
+				loadTextureOrColor(bottom, true),
+				loadTextureOrColor(back),
+				loadTextureOrColor(front)
 			];
 
 			const geometry = new THREE.BoxGeometry(2, 2, 2);

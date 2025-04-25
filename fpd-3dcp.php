@@ -4,7 +4,7 @@
  * Plugin Name: 3D Cube Preview for Fancy Product Designer
  * Plugin URI: https://www.cartbounty.com
  * Description: Add option to preview 3D cube in Fancy Product Designer
- * Version: 1.0
+ * Version: 1.0.1
  * Text Domain: fpd-3dcp
  * Author: Streamline.lv
  * Author URI: http://www.majas-lapu-izstrade.lv/en
@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'FPD_3DCP_VERSION', '1.0' );
+define( 'FPD_3DCP_VERSION', '1.0.1' );
 define( 'FPD_3DCP_PLUGIN_NAME', '3D Preview' );
 define( 'FPD_3DCP', 'fpd-3dcp' );
 

@@ -112,14 +112,15 @@ class fpd_3dcp_Admin {
 			$this->settings = wp_parse_args(
 				get_option( 'fpd_3dcp_settings', array() ),
 				array(
-					'scene_width'     => 1500,
-					'scene_height'    => 800,
-					'cube_height'     => 579,
-					'plane_order'     => '0,1,2,3,4,5',
-					'button_name'     => __( '3D Preview', 'fpd-3dcp' ),
-					'button_class'    => 'fpd-3dcp-button-preview',
-					'product_ids'     => '',
-					'quality_notice'  => __( '<strong>Please Note</strong>: This 3D preview is meant to visualize how the design wraps around the cube. The quality may appear lower here — your final product will be printed in high resolution.', 'fpd-3dcp' ),
+					'scene_width'    		=> 1500,
+					'scene_height'   		=> 800,
+					'cube_height'     		=> 579,
+					'button_name'     		=> __( '3D Preview', 'fpd-3dcp' ),
+					'button_class'    		=> 'fpd-3dcp-button-preview',
+					'product_ids'     		=> '',
+					'plane_order'     		=> '0,1,2,3,4,5',
+					'product_ids_5_sides'   => '',
+					'quality_notice'  		=> __( '<strong>Please Note</strong>: This 3D preview is meant to visualize how the design wraps around the cube. The quality may appear lower here — your final product will be printed in high resolution.', 'fpd-3dcp' ),
 				)
 			);
 		}
@@ -173,14 +174,15 @@ class fpd_3dcp_Admin {
 		register_setting( 'fpd_3dcp_settings_group', 'fpd_3dcp_settings' );
 
 		$fields = array(
-			'scene_width' 		=> __( 'Scene width', 'fpd-3dcp' ),
-			'scene_height' 		=> __( 'Scene height', 'fpd-3dcp' ),
-			'cube_height' 		=> __( 'Cube height', 'fpd-3dcp' ),
-			'plane_order' 		=> __( 'Plane order', 'fpd-3dcp' ),
-			'button_name' 		=> __( 'Preview button name', 'fpd-3dcp' ),
-			'button_class' 		=> __( 'Preview button class', 'fpd-3dcp' ),
-			'product_ids' 		=> __( 'Product IDs', 'fpd-3dcp' ),
-			'quality_notice' 	=> __( 'Preview quality notice', 'fpd-3dcp' ),
+			'scene_width' 			=> __( 'Scene width', 'fpd-3dcp' ),
+			'scene_height' 			=> __( 'Scene height', 'fpd-3dcp' ),
+			'cube_height' 			=> __( 'Cube height', 'fpd-3dcp' ),
+			'button_name' 			=> __( 'Preview button name', 'fpd-3dcp' ),
+			'button_class' 			=> __( 'Preview button class', 'fpd-3dcp' ),
+			'product_ids' 			=> __( 'Product IDs', 'fpd-3dcp' ),
+			'plane_order' 			=> __( 'Plane order', 'fpd-3dcp' ),
+			'product_ids_5_sides' 	=> __( 'Product IDs with 5 sides', 'fpd-3dcp' ),
+			'quality_notice' 		=> __( 'Preview quality notice', 'fpd-3dcp' ),
 		);
 
 		add_settings_section(
@@ -276,6 +278,17 @@ class fpd_3dcp_Admin {
 	function fpd_3dcp_product_ids(){
 		$value = $this->get_settings( 'product_ids' ); ?>
 		<input id="fpd_3dcp_product_ids" type="text" name="fpd_3dcp_settings[product_ids]" value="<?php echo esc_attr( $value ?? '' ); ?>" class="regular-text" />
+		<?php
+	}
+
+	/**
+	 * Defining product IDs field for 5 side cubes
+	 *
+	 * @since    1.0
+	 */
+	function fpd_3dcp_product_ids_5_sides(){
+		$value = $this->get_settings( 'product_ids_5_sides' ); ?>
+		<input id="fpd_3dcp_product_ids_5_sides" type="text" name="fpd_3dcp_settings[product_ids_5_sides]" value="<?php echo esc_attr( $value ?? '' ); ?>" class="regular-text" />
 		<?php
 	}
 
