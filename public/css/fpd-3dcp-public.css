@@ -15,8 +15,8 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	background-color: rgba(0,0,0,0.85);
 	display: none;
 	justify-content: center;
@@ -25,8 +25,8 @@
 }
 
 #fpd-3dcp-cube-canvas{
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: 100%;
 	display: block;
 	max-width: 100%;
 	max-height: 100%;

@@ -148,7 +148,7 @@
 
 			controls = new THREE.OrbitControls(camera, renderer.domElement);
 			controls.minDistance = 3; // Minimum zoom (closer to the object)
-			controls.maxDistance = 10; // Maximum zoom (farther from the object)
+			controls.maxDistance = 10; // Maximum zoom (farther from the object
 
 			// Animation controls - stop and resume on action
 			let isUserInteracting = false;
